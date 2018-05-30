@@ -22,7 +22,7 @@
 ;It will return a new number
 
 (deftest reductionist-reduce
-  (testing "Adds the elements of a data collection together"
+  (testing "Returns zero when given an empty collection"
     ;create a list containing [0]
     ;create a new reduce function
     ;pass in the collection
