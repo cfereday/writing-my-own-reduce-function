@@ -2,5 +2,5 @@
   (:gen-class))
 
 (defn my-reduce [some-collection]
-  0)
+  (map + some-collection))
 

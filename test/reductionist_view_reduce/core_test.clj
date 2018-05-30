@@ -23,9 +23,17 @@
 
 (deftest reductionist-reduce
   (testing "Adds the elements of a data collection together"
-    ;create an array containing [0]
+    ;create a list containing [0]
     ;create a new reduce function
     ;pass in the collection
     ;returns 0
-    (def empty-list (list 0))
-    (is (= (my-reduce empty-list) 0))))
+    (def empty-array (to-array [0]))
+    (is (= (my-reduce empty-array) 0)))
+  (testing "Adds two elements in a list together"
+    ;create a list containing [1 1]
+    ;invoke the fucntion with the list
+    ;check returns 2
+    (def elements-to-be-added (to-array [1 1]))
+    (is (= (my-reduce elements-to-be-added) 2)))
+
+  )
