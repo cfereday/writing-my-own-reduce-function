@@ -14,26 +14,36 @@
 ; and the result of the last one is the result of the whole.
 
 
-;doIt takes a collection
-;It takes an accumulator
-;It can either give a new data collection, or a single result
-;It will go through each item in the collection
-;It will apply a function to each element of that collection
-;It will return a new number
+;grab first item
+;grab accumulator
+;shove to function
+;whatever you get back you have your new accumulator
+;grab second item
+;grab new accumulator
+;shove to function
+
+(comment
+  (deftest reductionist-reduce
+    (testing "Returns zero when given an empty collection"
+      (def empty-sequence '(0))
+      (is (= (my-reduce empty-sequence) 0)))
+    (testing "Adds two elements in a list together"
+      (def elements-to-be-added '(1 1))
+      (is (= (my-reduce elements-to-be-added) 2)))
+    (testing "Adds two elements in a list together"
+      (def elements-to-be-added '(1 1 2))
+      (is (= (my-reduce elements-to-be-added) 4)))))
 
 (deftest reductionist-reduce
   (testing "Returns zero when given an empty collection"
-    ;create a list containing [0]
-    ;create a new reduce function
-    ;pass in the collection
-    ;returns 0
-    (def empty-array (to-array [0]))
-    (is (= (my-reduce empty-array) 0)))
+    (def empty-sequence '(0))
+    (is (= (my-reduce-two empty-sequence + 0) 0)))
   (testing "Adds two elements in a list together"
-    ;create a list containing [1 1]
-    ;invoke the fucntion with the list
-    ;check returns 2
-    (def elements-to-be-added (to-array [1 1]))
-    (is (= (my-reduce elements-to-be-added) 2)))
+    (def elements-to-be-added '(1 1))
+    (is (= (my-reduce-two elements-to-be-added + 0) 2)))
+  (testing "Adds two elements in a list together"
+    (def elements-to-be-added '(1 1 2))
+    (is (= (my-reduce-two elements-to-be-added + 0) 4))))
 
-  )
+
+
