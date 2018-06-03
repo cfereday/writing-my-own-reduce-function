@@ -13,8 +13,8 @@
 (defn my-reduce [some-collection some-function accumulator]
   (if (= (count some-collection) 0)
     accumulator
-    (let [first-number-in-collection (first some-collection)
-          new-accumulator (some-function accumulator first-number-in-collection)
-          popped-collection (pop some-collection)]
-      (my-reduce popped-collection some-function new-accumulator))))
+    (let [[first-element & rest] some-collection
+          new-accumulator (some-function accumulator first-element)]
+      (my-reduce rest some-function new-accumulator))))
+
 

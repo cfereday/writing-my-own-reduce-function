@@ -22,7 +22,7 @@
 ;grab new accumulator
 ;shove to function
 
-(deftest reductionist-reduce
+(deftest reductionist-reduce-addition
   (testing "Returns zero when given an empty collection"
     (def empty-sequence '(0))
     (is (= (my-reduce empty-sequence + 0) 0)))
