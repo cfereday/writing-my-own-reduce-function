@@ -30,17 +30,25 @@
   [some-collection some-function]
   (reverse (my-reduce some-collection #(conj %1 (some-function %2)) '())))
 
-(defn my-map-two
-  ([some-function some-collection]
-   (let [[first-element & rest] some-collection
-         new-collection (conj '() (some-function first-element))]
-     (my-map-two some-function rest new-collection)))
-  ([some-function some-collection some-new-collection]
-   (if (= (count some-collection) 0)
-     (reverse some-new-collection)
-     (let [[first-element & rest] some-collection
-           updated-new-collection (conj some-new-collection (some-function first-element))]
-       (my-map-two some-function rest updated-new-collection)))))
+
+;filter method - step by step
+;take a predicate & a collection
+;grab first item
+;check if the item returns true against the predicate#
+;if it does add it to the new collection
+;grab second item
+;Go through same process
+
+(defn- should-be-added?
+  [%2 some-predicate]
+  (if (= (some-predicate %2) true)
+    %2))
+
+(defn my-filter
+  [some-collection some-predicate]
+  (let [initial-result (my-reduce some-collection #(conj %1 (should-be-added? %2 some-predicate)) '())
+        removed-nil-from-result (remove nil? initial-result)]
+    (reverse removed-nil-from-result)))
 
 
 
