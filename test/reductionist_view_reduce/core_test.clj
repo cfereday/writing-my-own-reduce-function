@@ -22,28 +22,16 @@
 ;grab new accumulator
 ;shove to function
 
-(comment
-  (deftest reductionist-reduce
-    (testing "Returns zero when given an empty collection"
-      (def empty-sequence '(0))
-      (is (= (my-reduce empty-sequence) 0)))
-    (testing "Adds two elements in a list together"
-      (def elements-to-be-added '(1 1))
-      (is (= (my-reduce elements-to-be-added) 2)))
-    (testing "Adds two elements in a list together"
-      (def elements-to-be-added '(1 1 2))
-      (is (= (my-reduce elements-to-be-added) 4)))))
-
 (deftest reductionist-reduce
   (testing "Returns zero when given an empty collection"
     (def empty-sequence '(0))
-    (is (= (my-reduce-two empty-sequence + 0) 0)))
+    (is (= (my-reduce empty-sequence + 0) 0)))
   (testing "Adds two elements in a list together"
     (def elements-to-be-added '(1 1))
-    (is (= (my-reduce-two elements-to-be-added + 0) 2)))
+    (is (= (my-reduce elements-to-be-added + 0) 2)))
   (testing "Adds two elements in a list together"
     (def elements-to-be-added '(1 1 2))
-    (is (= (my-reduce-two elements-to-be-added + 0) 4))))
+    (is (= (my-reduce elements-to-be-added + 0) 4))))
 
 
 
