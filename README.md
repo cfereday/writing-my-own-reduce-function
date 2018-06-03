@@ -1,36 +1,28 @@
 # reductionist-view-reduce
 
-FIXME: description
+I've decided to write my own reduce function with the following goals in mind:
+
+* Really understand the reduce function which is so commonly used
+* Understand how other core functions like map & filter in turn use the reduce method: their differences and similarities
+* Continue to improve Clojure skilss
 
 ## Installation
 
-Download from http://example.com/FIXME.
+```
+$ Git clone git@github.com:charlottebrf/writing-my-own-reduce-function.git
+```
 
 ## Usage
 
-FIXME: explanation
+Run the tests
 
-    $ java -jar reductionist-view-reduce-0.1.0-standalone.jar [args]
+    $ cd writing-my-own-reduce-function
+    lein test
+    
+### Connectd Blog Post
 
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+* ToDo
 
 ## License
 
-Copyright © 2018 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License either version 1.0.
