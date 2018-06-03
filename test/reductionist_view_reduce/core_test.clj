@@ -13,7 +13,8 @@
 ; Like the usual composition of functions in mathematics, the result of each function is passed as the argument of the next,
 ; and the result of the last one is the result of the whole.
 
-
+;reduce function - step by step
+;takes a collection, a function & an accumulator
 ;grab first item
 ;grab accumulator
 ;shove to function
@@ -21,6 +22,7 @@
 ;grab second item
 ;grab new accumulator
 ;shove to function
+;returns the accumulator
 
 (deftest reductionist-reduce-addition
   (testing "Returns zero when given an empty collection"
@@ -33,5 +35,42 @@
     (def elements-to-be-added '(1 1 2))
     (is (= (my-reduce elements-to-be-added + 0) 4))))
 
+
+
+;map function -step by step
+;takes a function & a collection
+;grab first item
+;apply function to that item
+;add to a new collection
+;grab second item
+;apply function to that item
+;add to a new collection
+;returns the new collection
+
+
+(deftest reductionist-map-using-my-reduce
+  (testing "Returns one when given an empty collection"
+    (def empty-sequence '(0))
+    (is (= (my-map empty-sequence inc) '(1))))
+  (testing "Returns incremented sequence of two elements"
+    (def sequence-of-two '(1 2))
+    (is (= (my-map sequence-of-two inc) '(2 3))))
+  (testing "Returns incremented sequence of three elements"
+    (def sequence-of-two '(1 2 3))
+    (is (= (my-map sequence-of-two inc) '(2 3 4)))))
+
+
+(deftest reductionist-map-using-built-without-my-reduce
+  (testing "Returns one when given an empty collection"
+    (def empty-sequence '(0))
+    (is (= (my-map-two empty-sequence inc) '(1))))
+  (testing "Returns incremented sequence of two elements"
+    (def sequence-of-two '(1 2))
+    (is (= (my-map-two sequence-of-two inc) '(2 3))))
+  (testing "Returns incremented sequence of three elements"
+    (def sequence-of-two '(1 2 3))
+    (is (= (my-map-two sequence-of-two inc) '(2 3 4)))))
+
+;(deftest reductionist-filter-using-my-reduce)
 
 
