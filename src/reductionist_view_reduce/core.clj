@@ -51,16 +51,9 @@
     (reverse removed-nil-from-result)))
 
 
-(defn- check-if-should-be-added
-  [accumulator result]
-  (if (= (result true))
-    #(conj accumulator)))
-
 (defn my-filter
   [some-collection some-predicate]
-  (let [result (my-reduce some-collection #(conj %1
-                                             (if (= (some-predicate %2) true)
-                                               %2))
+  (let [result (my-reduce some-collection #(conj %1 (if (= (some-predicate %2) true) %2))
                  '())
         removed-nil-from-result (remove nil? result)]
     (reverse removed-nil-from-result)))
