@@ -39,24 +39,9 @@
 ;grab second item
 ;Go through same process
 
-(defn- should-be-added-two?
-  [%2 some-predicate]
-  (if (= (some-predicate %2) true)
-    %2))
-
-(defn my-filter-two
+  (defn my-filter
   [some-collection some-predicate]
-  (let [initial-result (my-reduce some-collection #(conj %1 (should-be-added-two? %2 some-predicate)) '())
-        removed-nil-from-result (remove nil? initial-result)]
-    (reverse removed-nil-from-result)))
-
-
-(defn my-filter
-  [some-collection some-predicate]
-  (let [result (my-reduce some-collection #(conj %1 (if (= (some-predicate %2) true) %2))
-                 '())
-        removed-nil-from-result (remove nil? result)]
-    (reverse removed-nil-from-result)))
-
-
-
+  (let [result (my-reduce some-collection #(conj (remove nil? %1) (if (= (some-predicate %2) true)
+                                                                    %2))
+                 '())]
+    (reverse result)))

@@ -70,7 +70,7 @@
 (deftest reductionist-filter-using-my-reduce
   (testing "Returns an empty collection when given an equal predicate and an odd number"
     (def odd-sequence '(1))
-    (is (= (my-filter odd-sequence even?) '())))
+    (is (= (my-filter odd-sequence even?) '(nil))))
   (testing "Returns a collection of the even numbers when given an equal predicate and a collection"
     (def sequence '(1 2 3 4 5 6))
     (is (= (my-filter sequence even?) '(2 4 6)))))
