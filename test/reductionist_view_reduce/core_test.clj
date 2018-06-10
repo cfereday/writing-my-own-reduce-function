@@ -80,9 +80,9 @@
 ;take a predicate and a collection
 ;grab first item
 ;check if item returns true against the predicate
-;if it does add true to the accumulator and return the accumulator
+;if it does add true to the accumulator the predicate otherwise add the new accumulator which is false (nil)
 ;otherwise grab second item
-;check if item returns true against the predicate
+;check if item returns true against the predicate otherwise add the new accumulator which is false (nil)
 ;if it does add true to the accumulator and return the accumulator
 ;once you get a true you return the accumulator
 ;otherwise you continue through whole list - if no items are true then nil is returned
@@ -101,5 +101,24 @@
   (testing "Returns true when there is at least one even number in collection"
     (def mixed-sequence '(1 2 3 5 6 8))
     (is (= (my-some mixed-sequence even?)) true)))
+
+
+;some max - step by step
+;take a function & a collection
+;grab first item
+;check if item is bigger than last
+;if it is keep it, otherwise on to the next one
+
+(deftest reductionist-max-using-my-reduce
+  (testing "Returns nil when given nil as only number"
+            (def nil-sequence '(0))
+            (is (= (my-max nil-sequence) 0)))
+  (testing "Returns 3 when this is the biggest number"
+    (def numbers '(1 2 3))
+    (is (= (my-max numbers) 3)))
+  (testing "Returns 9 when this is the biggest number"
+    (def numbers '(1 4 6 9))
+    (is (= (my-max numbers) 9))))
+
 
 

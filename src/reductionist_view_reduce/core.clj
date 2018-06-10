@@ -1,16 +1,6 @@
 (ns reductionist-view-reduce.core
   (:gen-class))
 
-;steps of a reduce function
-;grab first item
-;grab accumulator
-;shove to function
-;whatever you get back you have your new accumulator
-;grab second item
-;grab new accumulator
-;shove to function
-
-;control what the output will be
 
 (defn my-reduce [some-collection some-function accumulator]
   (if (= (count some-collection) 0)
@@ -19,29 +9,10 @@
           new-accumulator (some-function accumulator element)]
       (my-reduce rest some-function new-accumulator))))
 
-;get first item
-;apply function to first item
-;add this to a new collection
-;get second item
-;apply function to second item
-;add this to the new collection
-;and so on, until every item in the collection has been iterated over
-
 
 (defn my-map
   [some-collection some-function]
   (reverse (my-reduce some-collection #(conj %1 (some-function %2)) '())))
-
-
-
-
-;filter method - step by step
-;take a predicate & a collection
-;grab first itemq
-;check if the item returns true against the predicate#
-;if it does add it to the new collection
-;grab second item
-;Go through same process
 
 
   (defn my-filter
@@ -51,17 +22,17 @@
                  '())]
     (reverse result)))
 
-;some method - step by step
-;take a predicate and a collection
-;grab first item
-;check if item returns true against the predicate
-;if it does add true to the accumulator and return the accumulator
-;otherwise grab second item
-;check if item returns true against the predicate
-;if it does add true to the accumulator and return the accumulator
-;once you get a true you return the accumulator
-;otherwise you continue through whole list - if no items are true then nil is returned
-
 (defn my-some
   [some-collection some-predicate]
   (my-reduce some-collection #(if (some-predicate %2) true %1) nil))
+
+(comment
+  (defn my-max
+    [some-collection some-function]
+    (println "HERE IS RESULT***" (my-reduce some-collection (some-function some-collection) 0))
+    ))
+
+
+(defn my-max
+  [some-collection]
+  (my-reduce some-collection max 0))
