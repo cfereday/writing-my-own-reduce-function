@@ -26,18 +26,23 @@
 ;apply function to second item
 ;add this to the new collection
 ;and so on, until every item in the collection has been iterated over
+
+
 (defn my-map
   [some-collection some-function]
   (reverse (my-reduce some-collection #(conj %1 (some-function %2)) '())))
 
 
+
+
 ;filter method - step by step
 ;take a predicate & a collection
-;grab first item
+;grab first itemq
 ;check if the item returns true against the predicate#
 ;if it does add it to the new collection
 ;grab second item
 ;Go through same process
+
 
   (defn my-filter
   [some-collection some-predicate]
@@ -45,3 +50,21 @@
                                                                     %2))
                  '())]
     (reverse result)))
+
+;some method - step by step
+;take a predicate and a collection
+;grab first item
+;check if item returns true against the predicate
+;if it does add true to the accumulator and return the accumulator
+;otherwise grab second item
+;check if item returns true against the predicate
+;if it does add true to the accumulator and return the accumulator
+;once you get a true you return the accumulator
+;otherwise you continue through whole list - if no items are true then nil is returned
+
+(defn my-some
+  [some-collection some-predicate]
+  (my-reduce some-collection #(if (= (some-predicate %2) true)
+                                             true
+                                             %1)
+                 nil))

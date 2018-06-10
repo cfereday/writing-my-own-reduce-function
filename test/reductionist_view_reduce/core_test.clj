@@ -76,3 +76,30 @@
     (is (= (my-filter sequence even?) '(2 4 6)))))
 
 
+;some method - step by step
+;take a predicate and a collection
+;grab first item
+;check if item returns true against the predicate
+;if it does add true to the accumulator and return the accumulator
+;otherwise grab second item
+;check if item returns true against the predicate
+;if it does add true to the accumulator and return the accumulator
+;once you get a true you return the accumulator
+;otherwise you continue through whole list - if no items are true then nil is returned
+
+
+(deftest reductionist-some-using-my-reduce
+  (testing "Returns nil when no items in the collection are even"
+    (def odd-sequence '(1 3 5))
+    (is (= (my-some odd-sequence even?) nil)))
+  (testing "Returns true when one item in the collection is even"
+    (def even-sequence '(2 3 5))
+    (is (= (my-some even-sequence even?) true)))
+  (testing "Returns true when more than one item in the collection is even"
+    (def another-even-sequence '(2 4 6 8))
+    (is (= (my-some another-even-sequence even?)) true))
+  (testing "Returns true when there is at least one even number in collection"
+    (def mixed-sequence '(1 2 3 5 6 8))
+    (is (= (my-some mixed-sequence even?)) true)))
+
+
