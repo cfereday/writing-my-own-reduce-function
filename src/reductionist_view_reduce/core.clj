@@ -17,7 +17,7 @@
 
   (defn my-filter
   [some-collection some-predicate]
-  (let [result (my-reduce some-collection #(conj (remove nil? %1) (if (= (some-predicate %2) true)
+  (let [result (my-reduce some-collection #(conj (remove nil? %1) (if (some-predicate %2)
                                                                     %2))
                  '())]
     (reverse result)))
@@ -26,12 +26,12 @@
   [some-collection some-predicate]
   (my-reduce some-collection #(if (some-predicate %2) true %1) nil))
 
-(comment
-  (defn my-max
-    [some-collection some-function]
-    (println "HERE IS RESULT***" (my-reduce some-collection (some-function some-collection) 0))
-    ))
-
+(defn my-find
+  [some-collection some-predicate]
+  (let [result (my-reduce some-collection #(conj %1 (if (some-predicate %2)
+                                                      %2))
+                 '())]
+    (first (remove nil? (reverse result)))))
 
 (defn my-max
   [some-collection]

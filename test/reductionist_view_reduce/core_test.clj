@@ -121,4 +121,16 @@
     (is (= (my-max numbers) 9))))
 
 
+(deftest reductionist-my-find-using-my-reduce
+  (testing "Returns first even when given a list containing mixed numbers"
+    (def mixed-sequence '(1 3 4 7 8 9))
+    (is (= (my-find mixed-sequence even?) 4)))
+  (testing "Returns nil when there are no even numbers"
+    (def all-odd '(1 3 5))
+    (is (= (my-find all-odd even?) nil)))
+  (testing "Returns first even when given a list of all evens"
+    (def all-even '(2 4 6 8 10))
+    (is (= (my-find all-even even?) 2))))
+
+
 
