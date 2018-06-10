@@ -64,7 +64,4 @@
 
 (defn my-some
   [some-collection some-predicate]
-  (my-reduce some-collection #(if (= (some-predicate %2) true)
-                                             true
-                                             %1)
-                 nil))
+  (my-reduce some-collection #(if (some-predicate %2) true %1) nil))
